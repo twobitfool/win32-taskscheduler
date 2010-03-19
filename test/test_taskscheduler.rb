@@ -381,6 +381,10 @@ class TC_TaskScheduler < Test::Unit::TestCase
    def test_set_trigger
       assert_respond_to(@ts, :trigger=)
       assert_nothing_raised{ @ts.trigger = @trigger }
+      
+      symbol_trigger = @trigger.dup
+      symbol_trigger[:trigger_type] = symbol_trigger.delete('trigger_type')
+      assert_nothing_raised { @ts.trigger = symbol_trigger }
    end
 
    def test_set_trigger_expected_errors
