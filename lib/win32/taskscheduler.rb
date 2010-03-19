@@ -1204,6 +1204,8 @@ module Win32
       raise Error, 'No currently active task' if @pITask.nil?
       raise TypeError unless trigger.is_a?(Hash)
 
+      trigger = transform_and_validate(trigger)
+
       lpVtbl = 0.chr * 4
       table  = 0.chr * 28
 

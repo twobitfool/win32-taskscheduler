@@ -384,7 +384,7 @@ class TC_TaskScheduler < Test::Unit::TestCase
       
       symbol_trigger = @trigger.dup
       symbol_trigger[:trigger_type] = symbol_trigger.delete('trigger_type')
-      assert_nothing_raised { @ts.trigger = symbol_trigger }
+      assert_nothing_raised{ @ts.trigger = symbol_trigger }
    end
 
    def test_set_trigger_expected_errors
@@ -394,6 +394,10 @@ class TC_TaskScheduler < Test::Unit::TestCase
    def test_add_trigger
       assert_respond_to(@ts, :add_trigger)
       assert_nothing_raised{ @ts.add_trigger(0, @trigger) }
+
+      symbol_trigger = @trigger.dup
+      symbol_trigger[:trigger_type] = symbol_trigger.delete('trigger_type')
+      assert_nothing_raised{ @ts.add_trigger(0, symbol_trigger) }
    end
 
    def test_add_trigger_expected_errors
